@@ -94,11 +94,11 @@ public class TimeSpan implements ITimeSpan {
 
     @Override
     public ITimeSpan unionWith(ITimeSpan timeSpan) {
-        if (bt.compareTo(timeSpan.getEndTime()) < 0 || et.compareTo(timeSpan.getBeginTime()) > 0) {
+        if (bt.compareTo(timeSpan.getEndTime()) > 0 || et.compareTo(timeSpan.getBeginTime()) < 0) {
             return null;
         }
         
-        ITime begintime, endtime;
+        ITime begintime, endtime; 
         if (bt.compareTo(timeSpan.getBeginTime()) < 0) {
             begintime = bt;
         } else {

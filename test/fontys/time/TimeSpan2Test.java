@@ -16,10 +16,10 @@ import static org.junit.Assert.*;
  *
  * @author Mitch Kuijpers
  */
-public class TimeSpanTest {
-    private TimeSpan instance;
+public class TimeSpan2Test {
+    private TimeSpan2 instance;
     
-    public TimeSpanTest() {
+    public TimeSpan2Test() {
     }
     
     @BeforeClass
@@ -32,7 +32,7 @@ public class TimeSpanTest {
     
     @Before
     public void setUp() {
-        instance = new TimeSpan(new Time(2016,8,10,5,10),new Time(2016,9,20,10,20)); 
+        instance = new TimeSpan2(new Time(2016,8,10,5,10),new Time(2016,9,20,10,20)); 
     }
     
     @After
@@ -43,7 +43,7 @@ public class TimeSpanTest {
     (expected=IllegalArgumentException.class)
     public void testContructorException()
     {
-        instance = new TimeSpan(new Time(2016,9,20,10,20),new Time(2016,8,10,5,10));
+        instance = new TimeSpan2(new Time(2016,9,20,10,20),new Time(2016,8,10,5,10));
     }
     
 
@@ -141,7 +141,7 @@ public class TimeSpanTest {
     @Test
     public void testMove() {
         System.out.println("move");
-        TimeSpan moved = new TimeSpan(new Time(2016,8,10,5,15),new Time(2016,9,20,10,25));
+        TimeSpan2 moved = new TimeSpan2(new Time(2016,8,10,5,15),new Time(2016,9,20,10,25));
         int minutes = 5;
        
         instance.move(minutes);
@@ -181,8 +181,8 @@ public class TimeSpanTest {
     @Test
     public void testIsPartOf() {
         System.out.println("isPartOf");
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,8,10,5,11),new Time(2016,9,20,10,19));
-       instance = new TimeSpan(new Time(2016,4,10,5,11),new Time(2016,8,20,10,21));
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,8,10,5,11),new Time(2016,9,20,10,19));
+       
         boolean expResult = true;
         boolean result = instance.isPartOf(timeSpan);
         assertEquals(expResult, result);
@@ -191,8 +191,8 @@ public class TimeSpanTest {
         @Test
     public void testIsPartOf2() {
         System.out.println("isPartOf");
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,2,10,5,9),new Time(2016,9,20,10,21));
-       instance = new TimeSpan(new Time(2016,3,10,5,11),new Time(2016,8,20,10,21));
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,8,10,5,9),new Time(2016,9,20,10,21));
+       
         boolean expResult = false;
         boolean result = instance.isPartOf(timeSpan);
         assertEquals(expResult, result);
@@ -200,8 +200,8 @@ public class TimeSpanTest {
     }
         public void testIsPartOf3() {
         System.out.println("isPartOf");
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,8,10,5,9),new Time(2016,9,20,10,19));
-       instance = new TimeSpan(new Time(2016,2,10,5,11),new Time(2016,2,20,10,21));
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,8,10,5,9),new Time(2016,9,20,10,19));
+       
         boolean expResult = false;
         boolean result = instance.isPartOf(timeSpan);
         assertEquals(expResult, result);
@@ -209,8 +209,8 @@ public class TimeSpanTest {
     }
                 public void testIsPartOf4() {
         System.out.println("isPartOf");
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,8,10,5,11),new Time(2016,9,20,10,21));
-       instance = new TimeSpan(new Time(2016,9,10,5,11),new Time(2016,9,20,10,21));
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,8,10,5,11),new Time(2016,9,20,10,21));
+       
         boolean expResult = false;
         boolean result = instance.isPartOf(timeSpan);
         assertEquals(expResult, result);
@@ -223,10 +223,10 @@ public class TimeSpanTest {
     @Test
     public void testUnionWith() {
         System.out.println("unionWith");
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,1,10,5,9),new Time(2016,4,20,10,19));
-        instance = new TimeSpan(new Time(2016,3,10,5,11),new Time(2016,8,20,10,21));
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,1,10,5,9),new Time(2016,4,20,10,19));
+        instance = new TimeSpan2(new Time(2016,3,10,5,11),new Time(2016,8,20,10,21));
      
-        ITimeSpan expResult = new TimeSpan(new Time(2016,6,10,5,11),new Time(2016,9,20,10,19));
+        ITimeSpan expResult = new TimeSpan2(new Time(2016,6,10,5,11),new Time(2016,9,20,10,19));
         ITimeSpan result = instance.unionWith(timeSpan);
        
         assertTrue(result.getBeginTime() == expResult.getBeginTime() && result.getEndTime() == expResult.getEndTime());
@@ -237,8 +237,8 @@ public class TimeSpanTest {
      @Test
     public void testUnionWith2() {
         System.out.println("unionWith");
-        instance = new TimeSpan(new Time(2016,3,10,5,11),new Time(2016,8,20,10,21));
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,5,10,5,11),new Time(2016,9,20,10,21));
+        instance = new TimeSpan2(new Time(2016,3,10,5,11),new Time(2016,8,20,10,21));
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,5,10,5,11),new Time(2016,9,20,10,21));
      
         
         ITimeSpan result;
@@ -252,10 +252,10 @@ public class TimeSpanTest {
       @Test
     public void testUnionWith3() {
         System.out.println("unionWith");
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,14,10,5,9),new Time(2016,7,20,10,19));
-        instance = new TimeSpan(new Time(2016,3,10,5,11),new Time(2016,8,20,10,21));
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,14,10,5,9),new Time(2016,7,20,10,19));
+        instance = new TimeSpan2(new Time(2016,3,10,5,11),new Time(2016,8,20,10,21));
      
-        ITimeSpan expResult = new TimeSpan(new Time(2016,6,10,5,11),new Time(2016,9,20,10,19));
+        ITimeSpan expResult = new TimeSpan2(new Time(2016,6,10,5,11),new Time(2016,9,20,10,19));
         ITimeSpan result = instance.unionWith(timeSpan);
        
         assertTrue(result.getBeginTime() == expResult.getBeginTime() && result.getEndTime() == expResult.getEndTime());
@@ -267,10 +267,10 @@ public class TimeSpanTest {
           @Test
     public void testUnionWith4() {
         System.out.println("unionWith");
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,1,10,5,9),new Time(2016,1,20,10,19));
-        instance = new TimeSpan(new Time(2016,3,10,5,11),new Time(2016,8,20,10,21));
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,1,10,5,9),new Time(2016,1,20,10,19));
+        instance = new TimeSpan2(new Time(2016,3,10,5,11),new Time(2016,8,20,10,21));
      
-        ITimeSpan expResult = new TimeSpan(new Time(2016,6,10,5,11),new Time(2016,9,20,10,19));
+        ITimeSpan expResult = new TimeSpan2(new Time(2016,6,10,5,11),new Time(2016,9,20,10,19));
         ITimeSpan result = instance.unionWith(timeSpan);
        
         assertTrue(result.getBeginTime() == expResult.getBeginTime() && result.getEndTime() == expResult.getEndTime());
@@ -280,10 +280,10 @@ public class TimeSpanTest {
     }
      public void testUnionWith6() {
         System.out.println("unionWith");
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,10,10,5,9),new Time(2016,10,20,10,19));
-        instance = new TimeSpan(new Time(2016,3,10,5,11),new Time(2016,8,20,10,21));
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,10,10,5,9),new Time(2016,10,20,10,19));
+        instance = new TimeSpan2(new Time(2016,3,10,5,11),new Time(2016,8,20,10,21));
      
-        ITimeSpan expResult = new TimeSpan(new Time(2016,6,10,5,11),new Time(2016,9,20,10,19));
+        ITimeSpan expResult = new TimeSpan2(new Time(2016,6,10,5,11),new Time(2016,9,20,10,19));
         ITimeSpan result = instance.unionWith(timeSpan);
        
         assertTrue(result.getBeginTime() == expResult.getBeginTime() && result.getEndTime() == expResult.getEndTime());
@@ -299,9 +299,9 @@ public class TimeSpanTest {
     @Test
     public void testIntersectionWith() {
         System.out.println("intersectionWith");
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,8,10,5,9),new Time(2016,8,20,10,19)); 
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,8,10,5,9),new Time(2016,8,20,10,19)); 
         
-        ITimeSpan expResult = new TimeSpan(new Time(2016,8,10,5,10),new Time(2016,9,20,10,20)); ;
+        ITimeSpan expResult = new TimeSpan2(new Time(2016,8,10,5,10),new Time(2016,9,20,10,20)); ;
         ITimeSpan result = instance.intersectionWith(timeSpan);
         assertEquals(expResult, result);
 
@@ -309,9 +309,9 @@ public class TimeSpanTest {
        @Test
     public void testIntersectionWith2() {
         System.out.println("intersectionWith");
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,8,10,5,11),new Time(2016,9,20,10,21)); 
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,8,10,5,11),new Time(2016,9,20,10,21)); 
         
-        ITimeSpan expResult = new TimeSpan(new Time(2016,8,10,5,10),new Time(2016,9,20,10,20)); ;
+        ITimeSpan expResult = new TimeSpan2(new Time(2016,8,10,5,10),new Time(2016,9,20,10,20)); ;
         ITimeSpan result = instance.intersectionWith(timeSpan);
         assertEquals(expResult, result);
 
@@ -319,16 +319,13 @@ public class TimeSpanTest {
            @Test
     public void testIntersectionWith3() {
         System.out.println("intersectionWith");
-        ITimeSpan timeSpan = new TimeSpan(new Time(2016,12,10,5,11),new Time(2016,12,20,10,21)); 
+        ITimeSpan timeSpan = new TimeSpan2(new Time(2016,12,10,5,11),new Time(2016,12,20,10,21)); 
         
-        ITimeSpan expResult = new TimeSpan(new Time(2016,8,10,5,10),new Time(2016,9,20,10,20)); ;
+        ITimeSpan expResult = new TimeSpan2(new Time(2016,8,10,5,10),new Time(2016,9,20,10,20)); ;
         ITimeSpan result = instance.intersectionWith(timeSpan);
         assertEquals(expResult, result);
 
     }
     
-
-    
-
     
 }
